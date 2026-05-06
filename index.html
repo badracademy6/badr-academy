@@ -1,0 +1,538 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Badr Islamic Academy</title>
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;600;800&family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'Nunito', sans-serif;
+    background: #0b0c2a;
+    color: #fff;
+    min-height: 100vh;
+  }
+
+  /* ── Stars background ── */
+  .stars {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 0;
+    overflow: hidden;
+  }
+  .stars span {
+    position: absolute;
+    border-radius: 50%;
+    background: #fff;
+    animation: twinkle 3s infinite ease-in-out;
+  }
+
+  @keyframes twinkle {
+    0%, 100% { opacity: 0.2; transform: scale(1); }
+    50%       { opacity: 1;   transform: scale(1.4); }
+  }
+
+  .page {
+    position: relative;
+    z-index: 1;
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 40px 24px 60px;
+  }
+
+  /* ── HERO ── */
+  .hero {
+    text-align: center;
+    padding: 60px 20px 50px;
+  }
+
+  /* Logo SVG */
+  .logo-wrap {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 28px;
+  }
+
+  .hero-title {
+    font-family: 'Baloo 2', cursive;
+    font-size: clamp(2.8rem, 8vw, 5rem);
+    font-weight: 800;
+    line-height: 1.05;
+    background: linear-gradient(135deg, #ffd966 0%, #ffb347 50%, #ff8c69 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    letter-spacing: -1px;
+  }
+
+  .hero-sub {
+    font-size: 1.15rem;
+    color: #c4b8ff;
+    margin-top: 10px;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+  }
+
+  .tagline {
+    margin-top: 20px;
+    font-size: 1.25rem;
+    color: #e8e0ff;
+    max-width: 480px;
+    margin-left: auto;
+    margin-right: auto;
+    line-height: 1.6;
+  }
+
+  /* ── DIVIDER ── */
+  .moon-divider {
+    text-align: center;
+    font-size: 1.8rem;
+    margin: 10px 0;
+    opacity: 0.6;
+  }
+
+  /* ── SECTION CARDS ── */
+  .cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 20px;
+    margin: 40px 0;
+  }
+
+  .card {
+    background: rgba(255,255,255,0.07);
+    border: 1.5px solid rgba(255,255,255,0.14);
+    border-radius: 20px;
+    padding: 28px 24px;
+    transition: transform 0.2s, background 0.2s;
+  }
+
+  .card:hover { transform: translateY(-4px); background: rgba(255,255,255,0.11); }
+
+  .card-icon {
+    font-size: 2.4rem;
+    margin-bottom: 12px;
+    display: block;
+  }
+
+  .card h3 {
+    font-family: 'Baloo 2', cursive;
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: #ffd966;
+    margin-bottom: 8px;
+  }
+
+  .card p {
+    font-size: 0.97rem;
+    color: #ccc6ee;
+    line-height: 1.65;
+  }
+
+  /* ── HOURS BANNER ── */
+  .hours-banner {
+    background: linear-gradient(135deg, #6a3de8 0%, #9b5bf5 100%);
+    border-radius: 22px;
+    padding: 36px 32px;
+    text-align: center;
+    margin: 40px 0;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hours-banner::before {
+    content: '🌙';
+    position: absolute;
+    font-size: 7rem;
+    opacity: 0.12;
+    right: -10px;
+    top: -20px;
+  }
+
+  .hours-banner h2 {
+    font-family: 'Baloo 2', cursive;
+    font-size: 1.8rem;
+    font-weight: 800;
+    color: #fff;
+    margin-bottom: 10px;
+  }
+
+  .hours-time {
+    font-size: 2.8rem;
+    font-weight: 800;
+    font-family: 'Baloo 2', cursive;
+    color: #ffd966;
+    letter-spacing: 1px;
+  }
+
+  .hours-days {
+    margin-top: 6px;
+    font-size: 1.05rem;
+    color: #e0d4ff;
+    font-weight: 600;
+  }
+
+  /* ── WHY SECTION ── */
+  .section-title {
+    font-family: 'Baloo 2', cursive;
+    font-size: 2rem;
+    font-weight: 800;
+    color: #ffd966;
+    text-align: center;
+    margin: 50px 0 24px;
+  }
+
+  /* ── FEATURES LIST ── */
+  .features {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 14px;
+    margin-bottom: 40px;
+  }
+
+  .feat {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    background: rgba(255,255,255,0.05);
+    border-radius: 14px;
+    padding: 14px 18px;
+    border: 1px solid rgba(255,255,255,0.1);
+  }
+
+  .feat-icon { font-size: 1.5rem; flex-shrink: 0; }
+  .feat span { font-size: 0.95rem; color: #ddd6ff; font-weight: 600; }
+
+  /* ── CONTACT ── */
+  .contact-section {
+    background: rgba(255,255,255,0.06);
+    border: 1.5px solid rgba(255,214,102,0.3);
+    border-radius: 22px;
+    padding: 36px 32px;
+    text-align: center;
+    margin-top: 40px;
+  }
+
+  .contact-section h2 {
+    font-family: 'Baloo 2', cursive;
+    font-size: 1.7rem;
+    color: #ffd966;
+    margin-bottom: 20px;
+    font-weight: 800;
+  }
+
+  .contact-items {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 16px;
+  }
+
+  .contact-pill {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background: rgba(255,255,255,0.1);
+    border: 1px solid rgba(255,255,255,0.18);
+    border-radius: 50px;
+    padding: 12px 22px;
+    font-size: 1rem;
+    font-weight: 700;
+    color: #fff;
+    text-decoration: none;
+    transition: background 0.2s;
+  }
+
+  .contact-pill:hover { background: rgba(255,255,255,0.18); }
+  .contact-pill .icon { font-size: 1.2rem; }
+
+  /* ── FOOTER ── */
+  footer {
+    text-align: center;
+    margin-top: 50px;
+    color: rgba(255,255,255,0.35);
+    font-size: 0.85rem;
+  }
+
+  /* Print styles */
+  @media print {
+    body { background: #fff; color: #000; }
+    .stars { display: none; }
+    .card { border: 1px solid #ccc; }
+    .hero-title { -webkit-text-fill-color: #cc7700; }
+  }
+</style>
+</head>
+<body>
+
+<!-- Starfield -->
+<div class="stars" id="stars"></div>
+
+<div class="page">
+
+  <!-- ══ HERO ══ -->
+  <div class="hero">
+    <div class="logo-wrap">
+      <!-- LOGO: circular badge — kids arms down holding hands, moon+star centre top -->
+      <svg width="260" height="260" viewBox="0 0 260 260" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <radialGradient id="bggrad" cx="50%" cy="50%" r="50%">
+            <stop offset="0%" stop-color="#1a1060"/>
+            <stop offset="100%" stop-color="#0b0c2a"/>
+          </radialGradient>
+          <radialGradient id="glowc" cx="50%" cy="50%" r="50%">
+            <stop offset="0%" stop-color="#ffd966" stop-opacity="0.2"/>
+            <stop offset="100%" stop-color="#ffd966" stop-opacity="0"/>
+          </radialGradient>
+          <clipPath id="circleClip">
+            <circle cx="130" cy="130" r="118"/>
+          </clipPath>
+        </defs>
+
+        <!-- Outer ring -->
+        <circle cx="130" cy="130" r="126" fill="none" stroke="#ffd966" stroke-width="3" opacity="0.5"/>
+        <circle cx="130" cy="130" r="120" fill="none" stroke="#ffd966" stroke-width="1" opacity="0.3"/>
+        <!-- Circle fill -->
+        <circle cx="130" cy="130" r="118" fill="url(#bggrad)"/>
+        <!-- Ambient glow -->
+        <ellipse cx="130" cy="150" rx="90" ry="65" fill="url(#glowc)" clip-path="url(#circleClip)"/>
+
+        <!-- Tiny background stars -->
+        <circle cx="55" cy="50" r="1.2" fill="#fff" opacity="0.7"/>
+        <circle cx="205" cy="45" r="1.5" fill="#fff" opacity="0.8"/>
+        <circle cx="38" cy="130" r="1" fill="#fff" opacity="0.5"/>
+        <circle cx="222" cy="125" r="1" fill="#fff" opacity="0.6"/>
+        <circle cx="80" cy="38" r="1" fill="#fff" opacity="0.6"/>
+        <circle cx="178" cy="35" r="1.2" fill="#fff" opacity="0.7"/>
+        <circle cx="60" cy="175" r="1" fill="#fff" opacity="0.4"/>
+        <circle cx="202" cy="178" r="1" fill="#fff" opacity="0.4"/>
+
+        <!-- ══ CENTRE MOON + STAR (above joined hands) ══ -->
+        <!-- Moon crescent -->
+        <circle cx="130" cy="72" r="30" fill="#ffd966"/>
+        <circle cx="143" cy="66" r="22" fill="#1a1060"/>
+        <!-- Moon glow ring -->
+        <circle cx="130" cy="72" r="35" fill="none" stroke="#ffd966" stroke-width="2" opacity="0.3"/>
+        <!-- Star beside moon -->
+        <polygon points="152,58 154.5,65 162,65 156,69.5 158.5,77 152,72.5 145.5,77 148,69.5 142,65 149.5,65"
+                 fill="#ffd966" opacity="0.95"/>
+
+        <!-- ══ LEFT KID — arms down ══ -->
+        <!-- HEAD -->
+        <circle cx="82" cy="138" r="20" fill="#ffd5a8"/>
+        <!-- Hair: identical rounded cap -->
+        <ellipse cx="82" cy="122" rx="20" ry="10" fill="#3b2005"/>
+        <ellipse cx="64" cy="131" rx="5" ry="8" fill="#3b2005"/>
+        <ellipse cx="100" cy="131" rx="5" ry="8" fill="#3b2005"/>
+        <ellipse cx="82" cy="118" rx="13" ry="7" fill="#4a2a08"/>
+        <!-- Eyes -->
+        <circle cx="76" cy="137" r="3" fill="#2d1a0e"/>
+        <circle cx="88" cy="137" r="3" fill="#2d1a0e"/>
+        <circle cx="77" cy="135.8" r="1" fill="#fff"/>
+        <circle cx="89" cy="135.8" r="1" fill="#fff"/>
+        <!-- Smile -->
+        <path d="M77,144 Q82,149 87,144" stroke="#c07040" stroke-width="2" fill="none" stroke-linecap="round"/>
+        <!-- Cheeks -->
+        <ellipse cx="72" cy="142" rx="4.5" ry="2.5" fill="#ffb8a0" opacity="0.4"/>
+        <ellipse cx="92" cy="142" rx="4.5" ry="2.5" fill="#ffb8a0" opacity="0.4"/>
+
+        <!-- LEFT arm DOWN at side -->
+        <line x1="75" y1="160" x2="66" y2="190" stroke="#ffc8a0" stroke-width="7" stroke-linecap="round"/>
+        <!-- RIGHT arm reaching to centre hands -->
+        <line x1="89" y1="160" x2="113" y2="178" stroke="#ffc8a0" stroke-width="7" stroke-linecap="round"/>
+
+        <!-- BODY -->
+        <rect x="66" y="156" width="32" height="36" rx="10" fill="#1a1a2e"/>
+        <!-- LEGS -->
+        <rect x="70" y="190" width="10" height="24" rx="5" fill="#111122"/>
+        <rect x="84" y="190" width="10" height="24" rx="5" fill="#111122"/>
+        <!-- Shoes -->
+        <ellipse cx="75" cy="215" rx="8" ry="5" fill="#0d0d1a"/>
+        <ellipse cx="89" cy="215" rx="8" ry="5" fill="#0d0d1a"/>
+
+        <!-- ══ RIGHT KID — arms down ══ -->
+        <!-- HEAD -->
+        <circle cx="178" cy="138" r="20" fill="#ffd5a8"/>
+        <!-- Hair: identical rounded cap -->
+        <ellipse cx="178" cy="122" rx="20" ry="10" fill="#3b2005"/>
+        <ellipse cx="160" cy="131" rx="5" ry="8" fill="#3b2005"/>
+        <ellipse cx="196" cy="131" rx="5" ry="8" fill="#3b2005"/>
+        <ellipse cx="178" cy="118" rx="13" ry="7" fill="#4a2a08"/>
+        <!-- Eyes -->
+        <circle cx="172" cy="137" r="3" fill="#2d1a0e"/>
+        <circle cx="184" cy="137" r="3" fill="#2d1a0e"/>
+        <circle cx="173" cy="135.8" r="1" fill="#fff"/>
+        <circle cx="185" cy="135.8" r="1" fill="#fff"/>
+        <!-- Smile -->
+        <path d="M173,144 Q178,149 183,144" stroke="#c07040" stroke-width="2" fill="none" stroke-linecap="round"/>
+        <!-- Cheeks -->
+        <ellipse cx="168" cy="142" rx="4.5" ry="2.5" fill="#ffb8a0" opacity="0.4"/>
+        <ellipse cx="188" cy="142" rx="4.5" ry="2.5" fill="#ffb8a0" opacity="0.4"/>
+
+        <!-- RIGHT arm DOWN at side -->
+        <line x1="185" y1="160" x2="194" y2="190" stroke="#ffc8a0" stroke-width="7" stroke-linecap="round"/>
+        <!-- LEFT arm reaching to centre hands -->
+        <line x1="171" y1="160" x2="147" y2="178" stroke="#ffc8a0" stroke-width="7" stroke-linecap="round"/>
+
+        <!-- BODY -->
+        <rect x="162" y="156" width="32" height="36" rx="10" fill="#1a1a2e"/>
+        <!-- LEGS -->
+        <rect x="166" y="190" width="10" height="24" rx="5" fill="#111122"/>
+        <rect x="180" y="190" width="10" height="24" rx="5" fill="#111122"/>
+        <!-- Shoes -->
+        <ellipse cx="171" cy="215" rx="8" ry="5" fill="#0d0d1a"/>
+        <ellipse cx="185" cy="215" rx="8" ry="5" fill="#0d0d1a"/>
+
+        <!-- ══ JOINED HANDS centre ══ -->
+        <circle cx="130" cy="180" r="9" fill="#ffc8a0"/>
+        <!-- sparkle above hands -->
+        <text x="124" y="172" font-size="10" fill="#ffd966" opacity="0.85" font-family="sans-serif">✦</text>
+
+        <!-- Corner sparkles -->
+        <text x="44" y="88" font-size="9" fill="#ffd966" opacity="0.6" font-family="sans-serif">✦</text>
+        <text x="208" y="88" font-size="9" fill="#ffd966" opacity="0.6" font-family="sans-serif">✦</text>
+
+      </svg>
+    </div>
+
+    <!-- Ribbon banner around Badr Academy -->
+    <svg width="100%" viewBox="0 0 520 90" xmlns="http://www.w3.org/2000/svg" style="max-width:540px;overflow:visible;">
+      <defs>
+        <linearGradient id="rib" x1="0%" y1="0%" x2="0%" y2="100%">
+          <stop offset="0%" stop-color="#f5c518"/>
+          <stop offset="45%" stop-color="#ffd966"/>
+          <stop offset="100%" stop-color="#c9940a"/>
+        </linearGradient>
+        <linearGradient id="ribdark" x1="0%" y1="0%" x2="0%" y2="100%">
+          <stop offset="0%" stop-color="#a07508"/>
+          <stop offset="100%" stop-color="#7a5604"/>
+        </linearGradient>
+        <linearGradient id="ribfold" x1="0%" y1="0%" x2="0%" y2="100%">
+          <stop offset="0%" stop-color="#b88a0a"/>
+          <stop offset="100%" stop-color="#8a6403"/>
+        </linearGradient>
+      </defs>
+
+      <!-- LEFT ribbon tail with fold -->
+      <!-- tail body -->
+      <polygon points="0,45 38,20 48,45 38,70" fill="url(#rib)"/>
+      <!-- notch (V cut at left) -->
+      <polygon points="0,45 14,33 14,57" fill="url(#ribdark)"/>
+      <!-- fold shadow under tail -->
+      <polygon points="38,70 48,45 48,58 38,80" fill="url(#ribfold)" opacity="0.7"/>
+
+      <!-- RIGHT ribbon tail with fold -->
+      <polygon points="520,45 482,20 472,45 482,70" fill="url(#rib)"/>
+      <polygon points="520,45 506,33 506,57" fill="url(#ribdark)"/>
+      <polygon points="482,70 472,45 472,58 482,80" fill="url(#ribfold)" opacity="0.7"/>
+
+      <!-- Main ribbon body -->
+      <rect x="34" y="12" width="452" height="66" rx="5" fill="url(#rib)"/>
+      <!-- Top highlight strip -->
+      <rect x="34" y="12" width="452" height="10" rx="5" fill="#ffe599" opacity="0.55"/>
+      <!-- Bottom shadow strip -->
+      <rect x="34" y="62" width="452" height="16" rx="4" fill="#b8860a" opacity="0.35"/>
+      <!-- Inner thin border -->
+      <rect x="38" y="16" width="444" height="58" rx="3" fill="none" stroke="#fff" stroke-width="1.2" opacity="0.25"/>
+
+      <!-- BADR ISLAMIC ACADEMY text -->
+      <text x="260" y="57" text-anchor="middle" font-family="'Baloo 2', cursive" font-size="28" font-weight="800" fill="#3a1f00" letter-spacing="1">Badr Islamic Academy</text>
+      <!-- subtle text shine -->
+      <text x="260" y="52" text-anchor="middle" font-family="'Baloo 2', cursive" font-size="28" font-weight="800" fill="#fff" opacity="0.12" letter-spacing="1">Badr Islamic Academy</text>
+    </svg>
+    <div class="hero-sub">Islamic Daycare & Learning Centre</div>
+    <p class="tagline">Where little stars shine bright under the moonlit sky 🌙</p>
+  </div>
+
+  <!-- ══ HOURS BANNER ══ -->
+  <div class="hours-banner">
+    <h2>Our Hours</h2>
+    <div class="hours-time">8:00 AM – 6:00 PM</div>
+    <div class="hours-days">Monday through Friday</div>
+  </div>
+
+  <!-- ══ AGES BANNER ══ -->
+  <div style="background:rgba(255,255,255,0.06);border:1.5px solid rgba(255,214,102,0.25);border-radius:18px;padding:22px 28px;margin:0 0 32px;text-align:center;">
+    <div style="font-family:'Baloo 2',cursive;font-size:1.5rem;font-weight:800;color:#ffd966;margin-bottom:8px;">Ages 0 – 12 Years Old</div>
+    <div style="font-size:1rem;color:#e0d4ff;line-height:1.7;">
+      <span style="display:inline-block;background:rgba(100,220,130,0.15);border:1px solid rgba(100,220,130,0.35);border-radius:10px;padding:6px 16px;margin:4px 4px;">
+        🌿 <strong style="color:#7eeaaa;">Ages 0–6:</strong> Free for low-income families
+      </span>
+      <span style="display:inline-block;background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.12);border-radius:10px;padding:6px 16px;margin:4px 4px;">
+        🏛️ Licensed by the Government
+      </span>
+    </div>
+  </div>
+
+  <!-- ══ WHAT WE OFFER ══ -->
+  <div class="section-title">What We Offer ✨</div>
+  <div class="cards">
+    <div class="card">
+      <span class="card-icon">🕌</span>
+      <h3>Quran Learning</h3>
+      <p>Nurturing a love for the Quran through age-appropriate recitation, memorization, and understanding.</p>
+    </div>
+    <div class="card">
+      <span class="card-icon">🌙</span>
+      <h3>Arabic Language</h3>
+      <p>Fun and engaging Arabic lessons to help children connect with their faith and heritage.</p>
+    </div>
+    <div class="card">
+      <span class="card-icon">🎨</span>
+      <h3>Creative Play</h3>
+      <p>Arts, crafts, and imaginative activities that help children express themselves and grow.</p>
+    </div>
+    <div class="card">
+      <span class="card-icon">🌟</span>
+      <h3>Safe Environment</h3>
+      <p>A warm, supervised Islamic space where parents can work knowing their children are cared for.</p>
+    </div>
+  </div>
+
+  <!-- ══ CONTACT ══ -->
+  <div class="contact-section">
+    <h2>Get in Touch 🌟</h2>
+    <div class="contact-items">
+      <a class="contact-pill" href="tel:6472166780">
+        <span class="icon">📞</span>
+        (647) 216-6780
+      </a>
+      <a class="contact-pill" href="mailto:badr.academy6@gmail.com">
+        <span class="icon">✉️</span>
+        badr.academy6@gmail.com
+      </a>
+    </div>
+    <p style="margin-top:22px; color:#b8aaee; font-size:0.95rem; line-height:1.6;">
+      We'd love to welcome your child to our family!<br>
+      Contact us to book a tour or learn more.
+    </p>
+  </div>
+
+  <footer>
+    <p>© 2025 Badr Islamic Academy · Open Mon–Fri, 8AM–6PM</p>
+  </footer>
+
+</div>
+
+<script>
+  // Generate twinkling stars
+  const starsEl = document.getElementById('stars');
+  for (let i = 0; i < 90; i++) {
+    const s = document.createElement('span');
+    const size = Math.random() * 3 + 1;
+    s.style.cssText = `
+      width:${size}px; height:${size}px;
+      top:${Math.random()*100}%;
+      left:${Math.random()*100}%;
+      animation-delay:${Math.random()*4}s;
+      animation-duration:${2+Math.random()*3}s;
+    `;
+    starsEl.appendChild(s);
+  }
+</script>
+</body>
+</html>
